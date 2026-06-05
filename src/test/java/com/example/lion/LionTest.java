@@ -1,8 +1,7 @@
 package com.example.lion;
 
-import com.example.CatsReproduction;
+import com.example.Feline;
 import com.example.Lion;
-import com.example.Predator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,22 +17,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class LionTest {
 
     @Mock
-    Predator predator;
-
-    @Mock
-    CatsReproduction catsReproduction;
+    Feline feline;
 
     Lion lion;
 
     @BeforeEach
     void setUp() throws Exception {
-        lion = new Lion("Самец", predator, catsReproduction);
+        lion = new Lion("Самец", feline);
     }
 
     @Test
     void lionConstructorUnknownSexThrowException() {
         Exception exception = assertThrows(Exception.class,
-                () -> new Lion("Неизвестно", predator, catsReproduction)
+                () -> new Lion("Неизвестно", feline)
         );
         assertEquals(
                 "Используйте допустимые значения пола животного - самец или самка",
@@ -42,7 +38,7 @@ class LionTest {
 
     @Test
     void getKittensNoParamsOne() {
-        Mockito.when(catsReproduction.getKittens()).thenReturn(1);
+        Mockito.when(feline.getKittens()).thenReturn(1);
         int actual = lion.getKittens();
         assertEquals(1, actual, "Неверное число котят");
 
@@ -51,7 +47,7 @@ class LionTest {
 
     @Test
     void getFoodNoParamsListOfMeat() throws Exception {
-        Mockito.when(predator.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List <String> expected = List.of("Животные", "Птицы", "Рыба");
         List <String> actual = lion.getFood();
         assertEquals(expected, actual, "Неверный список еды");

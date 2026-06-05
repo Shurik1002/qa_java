@@ -1,8 +1,7 @@
 package com.example.lion;
 
-import com.example.CatsReproduction;
+import com.example.Feline;
 import com.example.Lion;
-import com.example.Predator;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,10 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LionParameterizedTest {
 
     @Mock
-    Predator predator;
-
-    @Mock
-    CatsReproduction catsReproduction;
+    Feline feline;
 
     private static Stream<Arguments> provideLionSexTestData() {
         return Stream.of(
@@ -33,7 +29,7 @@ public class LionParameterizedTest {
     @ParameterizedTest
     @MethodSource("provideLionSexTestData")
     void doesHaveManeKnownSexBoolean(String sex, boolean expected) throws Exception {
-        Lion lion = new Lion(sex, predator, catsReproduction);
+        Lion lion = new Lion(sex, feline);
         boolean actual = lion.doesHaveMane();
         assertEquals(expected, actual);
     }

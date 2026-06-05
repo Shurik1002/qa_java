@@ -12,7 +12,7 @@ class AlexTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        alex = new Alex(null, null);
+        alex = new Alex(null);
     }
 
     @Test
